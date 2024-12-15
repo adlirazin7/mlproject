@@ -1,3 +1,13 @@
+"""
+This module handles data transformation processes for machine learning pipelines:
+
+- Handles missing data using strategies like median and most frequent imputation.
+- Scales numerical data and applies one-hot encoding to categorical data.
+- Combines preprocessing pipelines using ColumnTransformer for efficient handling.
+- Saves the preprocessing object as a .pkl file for future use.
+"""
+
+
 import sys
 import os
 from dataclasses import dataclass
