@@ -4,7 +4,7 @@ import sys
 import numpy as np
 import pandas as pd
 import dill
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import r2_score
 
 from src.exception import CustomException
@@ -23,22 +23,34 @@ def save_object(file_path, obj):
     
 
 
-def evaluate_models(X_train, y_train, X_test, y_test, models):
+def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     try:
         report = {}
 
-        for name, model in models.items():
-            model.fit(X_train, y_train)
+        for model_name, model in models.items():
 
-            y_train_pred = model.predict(X_train)
+            param = params.get(model_name, {})  # Safely get parameters for the current model
 
-            y_test_pred = model.predict(X_test)
+            # Train the model
+            if param:
+                # Perform GridSearchCV for hyperparameter tuning
+                gs = GridSearchCV(model, param, cv=3, n_jobs=-1)
+                gs.fit(X_train, y_train)
+                model = gs.best_estimator_  # Get the best model from GridSearch
+            else:
+                # Directly fit the model if no parameters are provided
+                model.fit(X_train, y_train)
 
+            best_model = gs.best_estimator_  # Use best_estimator_ for simplicity
+            best_model.fit(X_train, y_train)
+
+            y_train_pred = best_model.predict(X_train)
+            y_test_pred = best_model.predict(X_test)
+            
             train_model_score = r2_score(y_train, y_train_pred)
-
             test_model_score = r2_score(y_test, y_test_pred)
 
-            report[name] = test_model_score
+            report[model_name] = test_model_score
         
         return report
 
