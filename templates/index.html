@@ -1,1 +1,79 @@
-<h1> Welcome to the home page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Student Exam Performance Predictor</h1>
+    </header>
+    <main>
+        <div class="container">
+            <h2>About the Application</h2>
+            <p>
+                This platform helps educators and students predict exam scores using advanced machine learning models. 
+                By analyzing input features such as study hours, attendance, and prior performance, the application provides accurate insights into expected exam results.
+            </p>
+
+            <h2>Features</h2>
+            <ul>
+                <li>Dataset Source - <a href="https://www.kaggle.com/datasets/spscientist/students-performance-in-exams?datasetId=74977" target="_blank">Link</a></li>
+                <li>The data consists of 8 column and 1000 rows</li>
+                <li>After applying various ML algo, this platform will predict the result's outcome</li>
+            </ul>
+
+            <h2>Get Started</h2>
+            <p>
+                To begin predicting scores, click the button below:
+            </p>
+            <div class="btn-container">
+                <a href="predictdata" class="btn">Start Prediction</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
