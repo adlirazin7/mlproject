@@ -96,3 +96,10 @@ jobs:
       - name: Clean previous images and containers
         run: |
          docker system prune -f
+
+      - name: Debugging Variables
+        run: |
+          echo "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION"
+          echo "Image URI=$IMAGE_URI"
+          echo "ECR_REPOSITORY_URI=$ECR_REPOSITORY_URI"
+      
