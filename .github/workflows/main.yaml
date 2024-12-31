@@ -80,24 +80,15 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Check disk space before cleanup
-        run: df -h
-
-      - name: Clean Docker System
-        run: docker system prune -af --volumes
-
-      - name: Check disk space after cleanup
-        run: df -h
       
       
       - name: Pull latest images
         run: |
          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
          
-      - name: Stop and remove  container if running
-        run: |
-         docker ps -q --filter "name=studentperformance-app" | grep -q . && docker stop studentperformance-app && docker rm -fv studentperformance-app 
+      # - name: Stop and remove  container if running
+      #   run: |
+      #    docker ps -q --filter "name=studentperformance-app" | grep -q . && docker stop studentperformance-app && docker rm -fv studentperformance-app 
        
       - name: Run Docker Image to serve users
         run: |
